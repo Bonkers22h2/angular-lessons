@@ -9,4 +9,13 @@
         <div class="detail-item"><small>Account number</small><strong>{{ beneficiary.beneficiaryAccountNumber }}</strong></div>
         <div class="detail-item"><small>Beneficiary ID</small><strong>#{{ beneficiary.id }}</strong></div>
     </div>
+
+    <section class="edit-beneficiary">
+        <p class="eyebrow">Edit</p>
+        <h2>Update this recipient</h2>
+        <form (ngSubmit)="updateBeneficiary()">
+            <label>Nickname <input type="text" [(ngModel)]="nickname" name="nickname" placeholder="e.g. Rent" required></label>
+            <label>Account number <input type="text" [(ngModel)]="beneficiaryAccountNumber" name="beneficiaryAccountNumber" placeholder="0000 0000" required></label>
+            <button type="submit">Update beneficiary</button>
+        </form>
 </section>

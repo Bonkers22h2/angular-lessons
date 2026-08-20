@@ -21,4 +21,8 @@ export class BeneficiaryService {
     createBeneficiary(accountNumber: string, beneficiary: any): Observable<any> {
         return this.http.post<any>(`${this.baseUrl}/${accountNumber}/beneficiaries`, beneficiary);
     }
+
+    updateBeneficiary(accountNumber: string, id: number, beneficiary: any): Observable<any> {
+        return this.http.patch<any>(`${this.baseUrl}/${accountNumber}/beneficiaries/${id}`, beneficiary);
+    }
 }
