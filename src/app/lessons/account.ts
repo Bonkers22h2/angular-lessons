@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -26,14 +26,18 @@ export class AccountService {
     }
 
     deposit(accountNumber: string, amount: number): Observable<any> {
-        return this.http.post<any>(`${this,this.baseUrl}/${accountNumber}/deposit`, {amount});
+        return this.http.post<any>(`${this, this.baseUrl}/${accountNumber}/deposit`, { amount });
     }
 
-    closeAccount(accountNumber: string):Observable<any> {
+    closeAccount(accountNumber: string): Observable<any> {
         return this.http.delete<any>(`${this.baseUrl}/${accountNumber}/close`);
     }
 
-    activateAccount(accountNumber: string):Observable<any> {
-        return this.http.delete<any> (`${this.baseUrl}/${accountNumber}/activate`);
+    activateAccount(accountNumber: string): Observable<any> {
+        return this.http.delete<any>(`${this.baseUrl}/${accountNumber}/activate`);
+    }
+
+    transfer(fromAccountNumber: string, toAccountNumber: string, amount: number): Observable<any> {
+        return this.http.post<any>(`${this.baseUrl}/${fromAccountNumber}/transfer/${toAccountNumber}`, { amount });
     }
 }   

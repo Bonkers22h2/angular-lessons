@@ -22,11 +22,18 @@
         <button type="submit">Deposit</button>
     </form>
 
-    <button *ngIf="account.active" type="button" (click)="closeAccount()">
+    <button *ngIf="account.active === true" type="button" (click)="closeAccount()">
         Close Account
     </button>
 
-    <button *ngIf="!account.active" type="button" (click)="activateAccount()">
+    <button *ngIf="account.active === false" type="button" (click)="activateAccount()">
         Activate Account
     </button>
+
+    <form (ngSubmit)="transfer()">
+        <input type="text" [(ngModel)]="toAccountNumber" name="transfer_acount_number"
+            placeholder="Transfer Account Number" required>
+        <input type="number" [(ngModel)]="transferAmount" name="transfer_amount" placeholder="Transfer Amount" required>
+        <button type="submit">Transfer</button>
+    </form>
 </div>

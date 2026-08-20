@@ -5,7 +5,8 @@
 <p *ngIf="accounts.length === 0">No accounts found!</p>
 <ul>
   <li *ngFor="let account of accounts">
-    <a [routerLink]="['/accounts', account.accountNumber]">{{ account.ownerName }}</a> — ₱{{ account.balance }}
+    <a [routerLink]="['/accounts', account.accountNumber]">{{account.id}}—{{ account.ownerName }}</a> — ₱{{
+    account.balance }}
   </li>
 </ul>
 

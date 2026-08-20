@@ -14,6 +14,8 @@ export class AccountDetail implements OnInit {
   withdrawAmount: number = 0;
   depositAmount: number = 0;
   accountNumber: string = '';
+  transferAmount: number = 0;
+  toAccountNumber: string = '';
 
 
   constructor(private route: ActivatedRoute, private accountService: AccountService, private cdr: ChangeDetectorRef) {
@@ -56,6 +58,19 @@ export class AccountDetail implements OnInit {
       },
       error: (err) => {
         console.error('Deposit failed:', err.error?.message);
+      }
+    })
+  }
+
+  transfer() {
+    this.accountService.transfer(this.accountNumber, this.toAccountNumber, this.transferAmount).subscribe({
+      next: () => {
+        this.toAccountNumber = '';
+        this.transferAmount = 0;
+        this.loadAccount();
+      },
+      error: (err) => {
+        console.error('Trasnfer failed:', err.error?.message);
       }
     })
   }
