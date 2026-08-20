@@ -11,7 +11,8 @@ import { FormsModule } from "@angular/forms";
 })
 export class AccountDetail implements OnInit {
   account: any = null;
-  amount: number = 0;
+  withdrawAmount: number = 0;
+  depositAmount: number = 0;
   accountNumber: string = '';
 
 
@@ -34,16 +35,29 @@ export class AccountDetail implements OnInit {
       this.cdr.detectChanges();
     });
   }
+
   withdraw() {
-    this.accountService.withdraw(this.accountNumber, this.amount).subscribe({
+    this.accountService.withdraw(this.accountNumber, this.withdrawAmount).subscribe({
       next: () => {
-        this.amount = 0;
+        this.withdrawAmount = 0;
         this.loadAccount();
       },
       error: (err) => {
         console.error('Withdraw failed:', err.error?.message);
       }
     });
+  }
+
+  deposit() {
+    this.accountService.deposit(this.accountNumber, this.depositAmount).subscribe({
+      next: () => {
+        this.depositAmount = 0;
+        this.loadAccount();
+      },
+      error: (err) => {
+        console.error('Deposit failed:', err.error?.message);
+      }
+    })
   }
 
 

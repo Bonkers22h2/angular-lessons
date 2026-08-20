@@ -24,4 +24,8 @@ export class AccountService {
     withdraw(accountNumber: string, amount: number): Observable<any> {
         return this.http.post<any>(`${this.baseUrl}/${accountNumber}/withdraw`, { amount });
     }
+
+    deposit(accountNumber: string, amount: number): Observable<any> {
+        return this.http.post<any>(`${this,this.baseUrl}/${accountNumber}/deposit`, {amount});
+    }
 }   
