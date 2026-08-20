@@ -71,5 +71,16 @@ export class AccountDetail implements OnInit {
     })
   }
 
+  activateAccount() {
+    this.accountService.activateAccount(this.accountNumber).subscribe({
+      next: () => {
+        this.loadAccount();
+      },
+      error: (err) => {
+        console.error('Activate account failed:', err.error?.message);
+      }
+    })
+  }
+
 
 }

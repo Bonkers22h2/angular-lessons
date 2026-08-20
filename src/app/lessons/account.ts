@@ -32,4 +32,8 @@ export class AccountService {
     closeAccount(accountNumber: string):Observable<any> {
         return this.http.delete<any>(`${this.baseUrl}/${accountNumber}/close`);
     }
+
+    activateAccount(accountNumber: string):Observable<any> {
+        return this.http.delete<any> (`${this.baseUrl}/${accountNumber}/activate`);
+    }
 }   

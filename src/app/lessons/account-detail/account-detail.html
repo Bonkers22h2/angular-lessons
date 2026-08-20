@@ -22,7 +22,11 @@
         <button type="submit">Deposit</button>
     </form>
 
-    <form (ngSubmit)="closeAccount()">
-        <button type="submit" *ngIf="account.active === true">Close Account</button>
-    </form>
+    <button *ngIf="account.active" type="button" (click)="closeAccount()">
+        Close Account
+    </button>
+
+    <button *ngIf="!account.active" type="button" (click)="activateAccount()">
+        Activate Account
+    </button>
 </div>
