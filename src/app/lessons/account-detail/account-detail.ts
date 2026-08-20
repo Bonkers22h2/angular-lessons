@@ -12,6 +12,8 @@ import { BeneficiaryService } from '../beneficiary';
   styleUrl: './account-detail.css',
 })
 export class AccountDetail implements OnInit {
+  nickname: string = '';
+  beneficiaryAccountNumber: string = '';
   beneficiaries: any[] = [];
   account: any = null;
   withdrawAmount: number = 0;
@@ -32,6 +34,19 @@ export class AccountDetail implements OnInit {
       this.loadBeneficiaries();
       this.cdr.detectChanges();
     })
+  }
+
+  createBeneficiary() {
+    const newBeneficiary = {
+      nickname: this.nickname,
+      beneficiaryAccountNumber: this.beneficiaryAccountNumber
+    };
+
+    this.beneficiaryService.createBeneficiary(this.accountNumber, newBeneficiary).subscribe(() => {
+      this.nickname = '';
+      this.beneficiaryAccountNumber = '';
+      this.loadBeneficiaries();
+    });
   }
 
   loadAccount() {

@@ -9,6 +9,13 @@
     <p>Status: {{ account.active ? 'Active' : 'Closed' }}</p>
     <p>Created: {{ account.createdAt}}</p>
 
+    <h3>Create Beneficiaries</h3>
+    <form (ngSubmit)="createBeneficiary()">
+        <input type="text" [(ngModel)]="nickname" name="nickname" placeholder="Nickname" required>
+        <input type="text" [(ngModel)]="beneficiaryAccountNumber" name="beneficiaryAccountNumber"
+            placeholder="Beneficiary Account Number" required>
+        <button type="submit">Create Beneficiary</button>
+    </form>
     <h3>Beneficiaries</h3>
     <p *ngIf="beneficiaries.length === 0">No Beneficairies Found</p>
     <ul>
