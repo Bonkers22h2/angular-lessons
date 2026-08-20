@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../account';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
+import { BeneficiaryService } from '../beneficiary';
+
 @Component({
   selector: 'app-account-detail',
   imports: [CommonModule, FormsModule],
@@ -10,6 +12,7 @@ import { FormsModule } from "@angular/forms";
   styleUrl: './account-detail.css',
 })
 export class AccountDetail implements OnInit {
+  beneficiaries: any[] = [];
   account: any = null;
   withdrawAmount: number = 0;
   depositAmount: number = 0;
@@ -18,7 +21,7 @@ export class AccountDetail implements OnInit {
   toAccountNumber: string = '';
 
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private accountService: AccountService, private beneficiaryService: BeneficiaryService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -36,6 +39,13 @@ export class AccountDetail implements OnInit {
       this.account = data;
       this.cdr.detectChanges();
     });
+  }
+
+  loadBeneficiaries() {
+    this.beneficiaryService.getBeneficiaries(this.accountNumber).subscribe(data => {
+      this.beneficiaries = data;
+      this.cdr.detectChanges();
+    })
   }
 
   withdraw() {
