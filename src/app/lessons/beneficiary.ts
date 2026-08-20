@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class BeneficiaryService {
     private baseUrl = 'http://localhost:8080/accounts';
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
-    getBeneficiaries(accountNumber: string) :Observable<any[]> {
+    getBeneficiaries(accountNumber: string): Observable<any[]> {
         return this.http.get<any[]>(`${this.baseUrl}/${accountNumber}/beneficiaries`);
     }
 
@@ -24,5 +24,9 @@ export class BeneficiaryService {
 
     updateBeneficiary(accountNumber: string, id: number, beneficiary: any): Observable<any> {
         return this.http.patch<any>(`${this.baseUrl}/${accountNumber}/beneficiaries/${id}`, beneficiary);
+    }
+
+    deleteBeneficiary(accountNumber: string, id: number): Observable<any> {
+        return this.http.delete<any>(`${this.baseUrl}/${accountNumber}/beneficiaries/${id}`);
     }
 }

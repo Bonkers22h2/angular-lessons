@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BeneficiaryService } from '../beneficiary';
 import { FormsModule } from '@angular/forms';
 
@@ -18,6 +18,7 @@ export class BeneficiaryDetail implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private beneficiaryService: BeneficiaryService,
     private cdr: ChangeDetectorRef
   ) { }
@@ -46,6 +47,11 @@ export class BeneficiaryDetail implements OnInit {
       this.nickname = '';
       this.beneficiaryAccountNumber = '';
       this.cdr.detectChanges();
+    });
+  }
+  deleteBeneficiary() {
+    this.beneficiaryService.deleteBeneficiary(this.accountNumber, this.beneficiary.id).subscribe(() => {
+      this.router.navigate(['/accounts', this.accountNumber]);
     });
   }
 }
