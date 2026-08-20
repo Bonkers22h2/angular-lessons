@@ -5,6 +5,13 @@
     <p>Account Number: {{account.accountNumber}}</p>
     <p>Type: {{account.accountType}}</p>
     <p>Balance: ₱{{account.balance}}</p>
-    <p>Status: {{account.active}}</p>
+    <p>Status: {{ account.active ? 'Active' : 'Closed' }}</p>
     <p>Created: {{ account.createdAt}}</p>
+
+
+    <h3>Withdraw</h3>
+    <form (ngSubmit)="withdraw()">
+        <input type="number" [(ngModel)]="amount" name="amount" placeholder="Amount" required="">
+        <button type="submit">Withdraw</button>
+    </form>
 </div>
