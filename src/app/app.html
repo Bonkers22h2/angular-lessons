@@ -1,6 +1,30 @@
-<nav>
-  <a routerLink="/accounts">Accounts</a> |
-  <a routerLink="/counter">Counter</a>
-</nav>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" routerLink="/accounts" aria-label="Harbor home">
+      <span class="brand-mark">H</span>
+      <span>
+        <strong>Harbor</strong>
+        <small>Personal banking lab</small>
+      </span>
+    </a>
 
-<router-outlet></router-outlet>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a routerLink="/accounts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accounts</a>
+      <a routerLink="/counter" routerLinkActive="active">Counter</a>
+    </nav>
+
+    <div class="profile-chip" aria-label="Current profile">
+      <span class="profile-avatar">JD</span>
+      <span class="profile-name">Jordan D.</span>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <span>Harbor banking lab</span>
+    <span>Securely learning one component at a time</span>
+  </footer>
+</div>

@@ -1,6 +1,14 @@
-<h2>Hello, this is my first Angular lesson component!</h2>
-<p>I built this from scratch and understand every piece.</p>
-
-<p>Count is: {{ count }}</p>
-<button [disabled]="count >= 5">Click me</button>
-<button (click)="increment()">add one</button>
+<section class="greeting-page">
+	<div class="greeting-mark">✦</div>
+	<p class="eyebrow">Practice / 01</p>
+	<h1>Hello, builder.</h1>
+	<p class="intro">This is a small Angular lesson, built from the first component upward.</p>
+	<div class="lesson-note">
+		<span>Interaction count</span>
+		<strong>{{ count }}</strong>
+		<div class="lesson-actions">
+			<button type="button" [disabled]="count >= 5">Click me</button>
+			<button type="button" (click)="increment()">Add one <span aria-hidden="true">↗</span></button>
+		</div>
+	</div>
+</section>

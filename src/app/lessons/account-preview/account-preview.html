@@ -1,26 +1,55 @@
-<h2>Accounts</h2>
+<section class="accounts-page">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">Overview / 01</p>
+      <h1>Your accounts</h1>
+      <p class="intro">A calm view of the money you are building toward.</p>
+    </div>
+    <div class="heading-note"><span class="status-dot"></span> All systems operational</div>
+  </div>
 
+  <div class="accounts-layout">
+    <section class="account-list-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h2>Active accounts</h2>
+        </div>
+        <span class="count-badge">{{ accounts.length | number: '2.0-0' }}</span>
+      </div>
 
+      <p class="empty-state" *ngIf="accounts.length === 0">No accounts found yet. Create your first account to get started.</p>
+      <div class="account-list" *ngIf="accounts.length > 0">
+        <a class="account-row" *ngFor="let account of accounts" [routerLink]="['/accounts', account.accountNumber]">
+          <span class="account-icon">{{ account.accountType === 'CHECKING' ? 'C' : 'S' }}</span>
+          <span class="account-summary">
+            <strong>{{ account.ownerName }}</strong>
+            <small>{{ account.accountType }} · {{ account.accountNumber }}</small>
+          </span>
+          <span class="account-balance">
+            <small>Available balance</small>
+            <strong>₱{{ account.balance | number: '1.2-2' }}</strong>
+          </span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
 
-<p *ngIf="accounts.length === 0">No accounts found!</p>
-<ul>
-  <li *ngFor="let account of accounts">
-    <a [routerLink]="['/accounts', account.accountNumber]">{{account.id}}—{{ account.ownerName }} —
-      {{account.accountNumber}}</a> — ₱{{
-    account.balance }}
-  </li>
-</ul>
-
-<h3>Create Account</h3>
-<form (ngSubmit)="onSubmit()">
-  <input type="text" [(ngModel)]="ownerName" name="ownerName" placeholder="Owner Name" required>
-
-  <select [(ngModel)]="accountType" name="accountType">
-    <option value="SAVINGS">Savings</option>
-    <option value="CHECKING">Checking</option>
-  </select>
-
-  <input type="number" [(ngModel)]="initialBalance" name="initialBalance" placeholder="Initial Balance" required>
-
-  <button type="submit">Create Account</button>
-</form>
+    <section class="create-panel">
+      <p class="eyebrow">New account</p>
+      <h2>Start something steady.</h2>
+      <p class="panel-copy">Set up a simple place for your next financial goal.</p>
+      <form (ngSubmit)="onSubmit()">
+        <label>Owner name <input type="text" [(ngModel)]="ownerName" name="ownerName" placeholder="e.g. Jordan Davis" required></label>
+        <label>Account type
+          <select [(ngModel)]="accountType" name="accountType">
+            <option value="SAVINGS">Savings</option>
+            <option value="CHECKING">Checking</option>
+          </select>
+        </label>
+        <label>Opening balance <input type="number" [(ngModel)]="initialBalance" name="initialBalance" placeholder="0.00" required></label>
+        <button class="primary-button" type="submit">Create account <span aria-hidden="true">↗</span></button>
+      </form>
+    </section>
+  </div>
+</section>

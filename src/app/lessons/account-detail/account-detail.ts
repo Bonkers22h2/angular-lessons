@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AccountService } from '../account';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
@@ -7,7 +7,7 @@ import { BeneficiaryService } from '../beneficiary';
 
 @Component({
   selector: 'app-account-detail',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './account-detail.html',
   styleUrl: './account-detail.css',
 })

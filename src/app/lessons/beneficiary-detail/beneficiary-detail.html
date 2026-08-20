@@ -1,0 +1,12 @@
+<section class="beneficiary-page" *ngIf="beneficiary">
+    <a class="back-link" [routerLink]="['/accounts', accountNumber]">← Back to account</a>
+    <p class="eyebrow">Saved recipient</p>
+    <h1>{{ beneficiary.nickname }}</h1>
+    <p class="intro">A trusted account ready for quick transfers.</p>
+    <div class="beneficiary-card">
+        <span class="person-mark">{{ beneficiary.nickname.charAt(0) }}</span>
+        <div class="detail-item"><small>Nickname</small><strong>{{ beneficiary.nickname }}</strong></div>
+        <div class="detail-item"><small>Account number</small><strong>{{ beneficiary.beneficiaryAccountNumber }}</strong></div>
+        <div class="detail-item"><small>Beneficiary ID</small><strong>#{{ beneficiary.id }}</strong></div>
+    </div>
+</section>

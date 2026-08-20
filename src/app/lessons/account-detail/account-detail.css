@@ -1,0 +1,42 @@
+.detail-page { min-width: 0; }
+.back-link { display: inline-block; margin-bottom: 42px; color: var(--muted); font-size: .8rem; font-weight: 700; text-decoration: none; }
+.detail-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.eyebrow { margin: 0 0 11px; color: var(--accent); font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+h1,h2,h3,p { margin-top: 0; }
+h1, h2, h3 { font-family: Georgia, serif; font-weight: 500; letter-spacing: -.03em; }
+h1 { margin-bottom: 10px; font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 1; }
+h2 { margin-bottom: 24px; font-size: 1.45rem; }
+h3 { margin-bottom: 11px; font-size: 1rem; }
+.account-number { margin: 0; color: var(--muted); font-size: .9rem; letter-spacing: .05em; }
+.status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-deep); font-size: .73rem; font-weight: 800; }
+.status-pill span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.status-pill.closed { background: var(--line); color: var(--muted); }
+.status-pill.closed span { background: var(--muted); }
+.balance-card { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin: 42px 0 24px; padding: 30px; border-radius: 18px; background: var(--accent); color: var(--paper); box-shadow: var(--shadow); }
+.balance-card .eyebrow { color: #c0e2dc; }
+.balance-card > div > strong { font: 500 clamp(2.5rem, 5vw, 4.5rem)/.95 Georgia, serif; letter-spacing: -.04em; }
+.balance-meta { display: grid; grid-template-columns: auto auto; gap: 8px 22px; color: #c0e2dc; font-size: .72rem; text-align: right; }
+.balance-meta strong { color: var(--paper); font-weight: 700; }
+.detail-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+.detail-panel { padding: 30px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
+.inline-form, .action-block form { display: grid; gap: 10px; }
+.inline-form { grid-template-columns: 1fr 1.2fr auto; align-items: end; margin-bottom: 28px; }
+label { display: grid; gap: 7px; color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+input { width: 100%; padding: 11px 12px; border: 1px solid var(--line-strong); border-radius: 8px; outline: none; background: var(--surface); color: var(--ink); font-size: .82rem; letter-spacing: 0; text-transform: none; }
+input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+button { padding: 11px 14px; border: 0; border-radius: 8px; background: var(--accent-deep); color: var(--paper); cursor: pointer; font-size: .76rem; font-weight: 800; }
+button:hover { background: var(--accent); }
+.empty-state { margin: 0; padding: 17px; border-radius: 9px; background: var(--accent-soft); color: var(--accent-deep); font-size: .82rem; }
+.beneficiary-row { display: grid; grid-template-columns: 36px 1fr 20px; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.person-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-family: Georgia, serif; }
+.beneficiary-row strong, .beneficiary-row small { display: block; }
+.beneficiary-row strong { font-size: .84rem; }
+.beneficiary-row small { margin-top: 4px; color: var(--muted); font-size: .72rem; }
+.arrow { color: var(--accent); text-align: right; }
+.transactions-panel { background: #f1f8f6; }
+.action-block { padding: 17px 0; border-top: 1px solid var(--line-strong); }
+.action-block form { grid-template-columns: 1fr auto; }
+.action-block:nth-of-type(4) form { grid-template-columns: 1fr 1fr auto; }
+.account-toggle { width: 100%; margin-top: 14px; background: transparent; border: 1px solid var(--line-strong); color: var(--accent-deep); }
+@media (max-width: 850px) { .detail-grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .detail-heading, .balance-card { display: block; } .status-pill { margin-top: 22px; } .balance-meta { margin-top: 28px; text-align: left; } .inline-form { grid-template-columns: 1fr; } .action-block:nth-of-type(4) form { grid-template-columns: 1fr; } .detail-panel, .balance-card { padding: 22px; } }

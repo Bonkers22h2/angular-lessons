@@ -14,6 +14,10 @@ export class BeneficiaryService {
         return this.http.get<any[]>(`${this.baseUrl}/${accountNumber}/beneficiaries`);
     }
 
+    getBeneficiary(accountNumber: string, id: number): Observable<any> {
+        return this.http.get<any>(`${this.baseUrl}/${accountNumber}/beneficiaries/${id}`);
+    }
+
     createBeneficiary(accountNumber: string, beneficiary: any): Observable<any> {
         return this.http.post<any>(`${this.baseUrl}/${accountNumber}/beneficiaries`, beneficiary);
     }

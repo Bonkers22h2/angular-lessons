@@ -1,6 +1,14 @@
-<h2>Counter</h2>
-<p>Current count: {{counter}}</p>
-
-<button (click)="increment()">Increment</button>
-<button (click)="decrement()">Decrement</button>
-<button (click)="reset()" [disabled]="counter === 0">Reset</button>
+<section class="counter-page">
+	<p class="eyebrow">Practice / 02</p>
+	<h1>Counter</h1>
+	<p class="intro">A small interaction surface for testing state changes.</p>
+	<div class="counter-card">
+		<span class="counter-label">Current count</span>
+		<strong>{{ counter }}</strong>
+		<div class="counter-actions">
+			<button type="button" (click)="decrement()" aria-label="Decrease count">−</button>
+			<button type="button" (click)="reset()" [disabled]="counter === 0">Reset</button>
+			<button type="button" (click)="increment()" aria-label="Increase count">+</button>
+		</div>
+	</div>
+</section>
