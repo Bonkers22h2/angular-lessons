@@ -28,4 +28,8 @@ export class AccountService {
     deposit(accountNumber: string, amount: number): Observable<any> {
         return this.http.post<any>(`${this,this.baseUrl}/${accountNumber}/deposit`, {amount});
     }
+
+    closeAccount(accountNumber: string):Observable<any> {
+        return this.http.delete<any>(`${this.baseUrl}/${accountNumber}/close`);
+    }
 }   

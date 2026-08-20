@@ -60,5 +60,16 @@ export class AccountDetail implements OnInit {
     })
   }
 
+  closeAccount() {
+    this.accountService.closeAccount(this.accountNumber).subscribe({
+      next: () => {
+        this.loadAccount();
+      },
+      error: (err) => {
+        console.error('Closed account failed:', err.error?.message);
+      }
+    })
+  }
+
 
 }
