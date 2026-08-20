@@ -30,7 +30,7 @@
 	border-radius: 12px;
 	background: var(--accent);
 	color: var(--paper);
-	font: 700 1.1rem/1 Georgia, serif;
+	font: 700 1.1rem/1 'Poppins', 'Segoe UI', sans-serif;
 }
 
 .brand strong,

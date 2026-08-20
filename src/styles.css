@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 :root {
 	--accent: #176b67;
 	--accent-deep: #0d4f4c;
@@ -15,16 +17,21 @@
 	box-sizing: border-box;
 }
 
+html {
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
 body {
 	margin: 0;
 	background: var(--paper);
 	color: var(--ink);
-	font-family: "Avenir Next", "Segoe UI", sans-serif;
+	font-family: 'Poppins', 'Segoe UI', sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 button,
 input,
-select {
+select,
+textarea {
 	font: inherit;
 }
