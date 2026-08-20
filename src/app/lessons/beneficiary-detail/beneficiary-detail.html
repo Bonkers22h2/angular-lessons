@@ -10,14 +10,27 @@
         <div class="detail-item"><small>Beneficiary ID</small><strong>#{{ beneficiary.id }}</strong></div>
     </div>
 
-    <section class="edit-beneficiary">
-        <p class="eyebrow">Edit</p>
-        <h2>Update this recipient</h2>
-        <form (ngSubmit)="updateBeneficiary()">
+    <section class="edit-beneficiary" aria-labelledby="edit-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Manage recipient</p>
+                <h2 id="edit-title">Keep the details current</h2>
+            </div>
+            <span class="edit-icon" aria-hidden="true">Edit</span>
+        </div>
+        <form class="edit-form" (ngSubmit)="updateBeneficiary()">
             <label>Nickname <input type="text" [(ngModel)]="nickname" name="nickname" placeholder="e.g. Rent" required></label>
             <label>Account number <input type="text" [(ngModel)]="beneficiaryAccountNumber" name="beneficiaryAccountNumber" placeholder="0000 0000" required></label>
-            <button type="submit">Update beneficiary</button>
+            <button type="submit">Save changes</button>
         </form>
+        <p class="feedback" *ngIf="feedback" role="status">{{ feedback }}</p>
+        <p class="error" *ngIf="error" role="alert">{{ error }}</p>
 
-    <button class="delete-button" (click)="deleteBeneficiary()">Delete beneficiary</button>
+        <div class="danger-zone">
+            <div>
+                <strong>Remove recipient</strong>
+                <p>Delete this saved beneficiary from the account.</p>
+            </div>
+            <button class="delete-button" type="button" (click)="deleteBeneficiary()">Delete beneficiary</button>
+        </div>
 </section>
