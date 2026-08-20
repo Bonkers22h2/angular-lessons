@@ -29,6 +29,7 @@ export class AccountDetail implements OnInit {
 
     this.accountService.getAccount(this.accountNumber).subscribe(data => {
       this.account = data;
+      this.loadBeneficiaries();
       this.cdr.detectChanges();
     })
   }
