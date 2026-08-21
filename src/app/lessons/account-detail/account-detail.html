@@ -6,7 +6,8 @@
             <h1>{{ account.ownerName }}'s {{ account.accountType | titlecase }}</h1>
             <p class="account-number">{{ account.accountNumber }}</p>
         </div>
-        <span class="status-pill" [class.closed]="!account.active"><span></span>{{ account.active ? 'Active' : 'Closed' }}</span>
+        <span class="status-pill" [class.closed]="!account.active"><span></span>{{ account.active ? 'Active' : 'Closed'
+            }}</span>
     </div>
 
     <section class="balance-card">
@@ -22,39 +23,65 @@
 
     <div class="detail-grid">
         <section class="detail-panel">
-            <div class="section-heading"><div><p class="eyebrow">People</p><h2>Beneficiaries</h2></div></div>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">People</p>
+                    <h2>Beneficiaries</h2>
+                </div>
+            </div>
             <form class="inline-form" (ngSubmit)="createBeneficiary()">
-                <label>Nickname <input type="text" [(ngModel)]="nickname" name="nickname" placeholder="e.g. Rent" required></label>
-                <label>Account number <input type="text" [(ngModel)]="beneficiaryAccountNumber" name="beneficiaryAccountNumber" placeholder="0000 0000" required></label>
+                <label>Nickname <input type="text" [(ngModel)]="nickname" name="nickname" placeholder="e.g. Rent"
+                        required></label>
+                <label>Account number <input type="text" [(ngModel)]="beneficiaryAccountNumber"
+                        name="beneficiaryAccountNumber" placeholder="0000 0000" required></label>
                 <button type="submit">Add beneficiary</button>
             </form>
             <p class="empty-state" *ngIf="beneficiaries.length === 0">No beneficiaries saved yet.</p>
+            
             <div class="beneficiary-list" *ngIf="beneficiaries.length > 0">
-                <a class="beneficiary-row" *ngFor="let beneficiary of beneficiaries" [routerLink]="['/accounts', accountNumber, 'beneficiaries', beneficiary.id]">
+                <a class="beneficiary-row" *ngFor="let beneficiary of beneficiaries"
+                    [routerLink]="['/accounts', accountNumber, 'beneficiaries', beneficiary.id]">
                     <span class="person-mark">{{ beneficiary.nickname.charAt(0) }}</span>
-                    <span><strong>{{ beneficiary.nickname }}</strong><small>{{ beneficiary.beneficiaryAccountNumber }}</small></span>
+                    <span><strong>{{ beneficiary.nickname }}</strong><small>{{ beneficiary.beneficiaryAccountNumber
+                            }}</small></span>
                     <span class="arrow">↗</span>
                 </a>
             </div>
         </section>
+
+        <p *ngIf="savingsGoal.length === 0"> No Savings Goal saved yet. </p>
+        <div *ngIf="savingsGoal.length > 0">
+            <a *ngFor="let savingGoal of  savingsGoal">
+                <p>{{ savingGoal.id }} - {{savingGoal.goalName}} - {{savingGoal.targetAmount}} -
+                    {{savingGoal.currentAmount}}</p>
+            </a>
+        </div>
+
 
         <section class="detail-panel transactions-panel">
             <p class="eyebrow">Move money</p>
             <h2>Quick actions</h2>
             <div class="action-block">
                 <h3>Deposit</h3>
-                <form (ngSubmit)="deposit()"><input type="number" [(ngModel)]="depositAmount" name="depositAmount" placeholder="Amount" required><button type="submit">Deposit</button></form>
+                <form (ngSubmit)="deposit()"><input type="number" [(ngModel)]="depositAmount" name="depositAmount"
+                        placeholder="Amount" required><button type="submit">Deposit</button></form>
             </div>
             <div class="action-block">
                 <h3>Withdraw</h3>
-                <form (ngSubmit)="withdraw()"><input type="number" [(ngModel)]="withdrawAmount" name="withdrawAmount" placeholder="Amount" required><button type="submit">Withdraw</button></form>
+                <form (ngSubmit)="withdraw()"><input type="number" [(ngModel)]="withdrawAmount" name="withdrawAmount"
+                        placeholder="Amount" required><button type="submit">Withdraw</button></form>
             </div>
             <div class="action-block">
                 <h3>Transfer to an account</h3>
-                <form (ngSubmit)="transfer()"><input type="text" [(ngModel)]="toAccountNumber" name="transferAccountNumber" placeholder="Account number" required><input type="number" [(ngModel)]="transferAmount" name="transferAmount" placeholder="Amount" required><button type="submit">Transfer</button></form>
+                <form (ngSubmit)="transfer()"><input type="text" [(ngModel)]="toAccountNumber"
+                        name="transferAccountNumber" placeholder="Account number" required><input type="number"
+                        [(ngModel)]="transferAmount" name="transferAmount" placeholder="Amount" required><button
+                        type="submit">Transfer</button></form>
             </div>
-            <button class="account-toggle" *ngIf="account.active === true" type="button" (click)="closeAccount()">Close account</button>
-            <button class="account-toggle" *ngIf="account.active === false" type="button" (click)="activateAccount()">Activate account</button>
+            <button class="account-toggle" *ngIf="account.active === true" type="button" (click)="closeAccount()">Close
+                account</button>
+            <button class="account-toggle" *ngIf="account.active === false" type="button"
+                (click)="activateAccount()">Activate account</button>
         </section>
     </div>
 </section>

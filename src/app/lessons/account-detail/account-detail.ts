@@ -4,6 +4,7 @@ import { AccountService } from '../account';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { BeneficiaryService } from '../beneficiary';
+import { SavingsGoalService } from '../savings-goal';
 
 @Component({
   selector: 'app-account-detail',
@@ -14,6 +15,7 @@ import { BeneficiaryService } from '../beneficiary';
 export class AccountDetail implements OnInit {
   nickname: string = '';
   beneficiaryAccountNumber: string = '';
+  savingsGoal: any[] = [];
   beneficiaries: any[] = [];
   account: any = null;
   withdrawAmount: number = 0;
@@ -23,7 +25,7 @@ export class AccountDetail implements OnInit {
   toAccountNumber: string = '';
 
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService, private beneficiaryService: BeneficiaryService, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private savingsGoalService: SavingsGoalService, private accountService: AccountService, private beneficiaryService: BeneficiaryService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class AccountDetail implements OnInit {
 
     this.accountService.getAccount(this.accountNumber).subscribe(data => {
       this.account = data;
+      this.loadSavingsGoal();
       this.loadBeneficiaries();
       this.cdr.detectChanges();
     })
@@ -60,6 +63,13 @@ export class AccountDetail implements OnInit {
   loadBeneficiaries() {
     this.beneficiaryService.getBeneficiaries(this.accountNumber).subscribe(data => {
       this.beneficiaries = data;
+      this.cdr.detectChanges();
+    })
+  }
+
+  loadSavingsGoal(){
+    this.savingsGoalService.getSavingsGoal(this.accountNumber).subscribe(data => {
+      this.savingsGoal = data;
       this.cdr.detectChanges();
     })
   }
