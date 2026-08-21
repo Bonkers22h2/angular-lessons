@@ -67,6 +67,17 @@ export class AccountDetail implements OnInit {
     })
   }
 
+  getSavingsGoalProgress(savingGoal: any): number {
+    const currentAmount = Number(savingGoal?.currentAmount ?? 0);
+    const targetAmount = Number(savingGoal?.targetAmount ?? 0);
+
+    if (!targetAmount) {
+      return 0;
+    }
+
+    return Math.min(Math.round((currentAmount / targetAmount) * 100), 100);
+  }
+
   loadAccount() {
     const accountNumber = this.route.snapshot.paramMap.get('accountNumber') ?? '';
     this.accountService.getAccount(accountNumber).subscribe(data => {

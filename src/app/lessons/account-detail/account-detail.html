@@ -49,18 +49,43 @@
             </div>
         </section>
 
-        <p *ngIf="savingsGoal.length === 0"> No Savings Goal saved yet. </p>
-        <div *ngIf="savingsGoal.length > 0">
-            <a *ngFor="let savingGoal of  savingsGoal">
-                <p>{{ savingGoal.id }} - {{savingGoal.goalName}} - {{savingGoal.targetAmount}} -
-                    {{savingGoal.currentAmount}}</p>
-            </a>
-        </div>
-        <form (ngSubmit)="createSavingGoal()">
-            <input type="text" [(ngModel)]="goalName" name="goalName" placeholder="Goal name" required>
-            <input type="number" [(ngModel)]="targetAmount" name="targetAmount" placeholder="Target Amount" required>
-            <button type="submit">Add Savings Goal</button>
-        </form>
+        <section class="detail-panel savings-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Plan ahead</p>
+                    <h2>Savings goals</h2>
+                </div>
+            </div>
+
+            <div class="goal-list" *ngIf="savingsGoal.length > 0; else emptySavingsGoal">
+                <article class="goal-card" *ngFor="let savingGoal of savingsGoal">
+                    <div class="goal-header">
+                        <div>
+                            <small>Goal</small>
+                            <strong>{{ savingGoal.goalName }}</strong>
+                        </div>
+                        <span class="goal-tag">{{ getSavingsGoalProgress(savingGoal) }}%</span>
+                    </div>
+                    <div class="progress-track" aria-label="Savings progress">
+                        <span [style.width.%]="getSavingsGoalProgress(savingGoal)"></span>
+                    </div>
+                    <div class="goal-amounts">
+                        <span>Saved ₱{{ (savingGoal.currentAmount || 0) | number: '1.2-2' }}</span>
+                        <span>Target ₱{{ savingGoal.targetAmount | number: '1.2-2' }}</span>
+                    </div>
+                </article>
+            </div>
+
+            <ng-template #emptySavingsGoal>
+                <p class="empty-state">No savings goal saved yet.</p>
+            </ng-template>
+
+            <form class="goal-form" (ngSubmit)="createSavingGoal()">
+                <label>Goal name <input type="text" [(ngModel)]="goalName" name="goalName" placeholder="e.g. New laptop" required></label>
+                <label>Target amount <input type="number" [(ngModel)]="targetAmount" name="targetAmount" placeholder="5000" min="0" required></label>
+                <button type="submit">Add savings goal</button>
+            </form>
+        </section>
 
 
         <section class="detail-panel transactions-panel">

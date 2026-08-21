@@ -33,10 +33,21 @@ button:hover { background: var(--accent); }
 .beneficiary-row strong { font-size: .84rem; }
 .beneficiary-row small { margin-top: 4px; color: var(--muted); font-size: .72rem; }
 .arrow { color: var(--accent); text-align: right; }
+.savings-panel { background: linear-gradient(180deg, #f8fbfb 0%, #eefaf8 100%); }
+.goal-list { display: grid; gap: 14px; margin-bottom: 20px; }
+.goal-card { padding: 18px; border: 1px solid rgba(18, 77, 68, 0.12); border-radius: 14px; background: rgba(255,255,255,0.7); }
+.goal-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.goal-header small { display: block; color: var(--muted); font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.goal-header strong { display: block; font-size: 1.05rem; }
+.goal-tag { padding: 7px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-deep); font-size: .7rem; font-weight: 800; }
+.progress-track { height: 10px; overflow: hidden; border-radius: 999px; background: rgba(18, 77, 68, 0.08); }
+.progress-track span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent) 0%, var(--accent-deep) 100%); }
+.goal-amounts { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; color: var(--muted); font-size: .72rem; font-weight: 700; }
+.goal-form { display: grid; gap: 12px; margin-top: 18px; }
 .transactions-panel { background: #f1f8f6; }
 .action-block { padding: 17px 0; border-top: 1px solid var(--line-strong); }
 .action-block form { grid-template-columns: 1fr auto; }
 .action-block:nth-of-type(4) form { grid-template-columns: 1fr 1fr auto; }
 .account-toggle { width: 100%; margin-top: 14px; background: transparent; border: 1px solid var(--line-strong); color: var(--accent-deep); }
 @media (max-width: 850px) { .detail-grid { grid-template-columns: 1fr; } }
-@media (max-width: 620px) { .detail-heading, .balance-card { display: block; } .status-pill { margin-top: 22px; } .balance-meta { margin-top: 28px; text-align: left; } .inline-form { grid-template-columns: 1fr; } .action-block:nth-of-type(4) form { grid-template-columns: 1fr; } .detail-panel, .balance-card { padding: 22px; } }
+@media (max-width: 620px) { .detail-heading, .balance-card { display: block; } .status-pill { margin-top: 22px; } .balance-meta { margin-top: 28px; text-align: left; } .inline-form { grid-template-columns: 1fr; } .action-block:nth-of-type(4) form { grid-template-columns: 1fr; } .goal-amounts { display: grid; gap: 6px; } .detail-panel, .balance-card { padding: 22px; } }
