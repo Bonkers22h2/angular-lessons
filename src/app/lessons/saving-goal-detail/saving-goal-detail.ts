@@ -48,6 +48,23 @@ export class SavingGoalDetail {
     })
   }
 
+  getProgressPercent(goal: any): number {
+    const current = Number(goal?.currentAmount ?? 0);
+    const target = Number(goal?.targetAmount ?? 0);
+
+    if (target <= 0) {
+      return 0;
+    }
+
+    return Math.min(Math.round((current / target) * 100), 100);
+  }
+
+  getRemainingAmount(goal: any): number {
+    const current = Number(goal?.currentAmount ?? 0);
+    const target = Number(goal?.targetAmount ?? 0);
+    return Math.max(target - current, 0);
+  }
+
   contribute() {
     this.accountNumber = this.route.snapshot.paramMap.get('accountNumber') ?? '';
     this.id = Number(this.route.snapshot.paramMap.get('id') ?? '');

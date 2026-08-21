@@ -1,19 +1,60 @@
-<p>saving-goal-detail works!</p>
-
 <ng-container *ngIf="savingGoal as goal; else loading">
-    <h1>{{goal.goalName}}</h1>
-    <h2>{{goal.id}}</h2>
-    <h2>{{goal.accountNumber}}</h2>
+    <section class="goal-page">
+        <article class="goal-card">
+            <p class="goal-eyebrow">Savings Goal</p>
+            <header class="goal-header">
+                <div>
+                    <h1>{{ goal.goalName }}</h1>
+                    <p class="goal-meta">Goal #{{ goal.id }} • Account {{ goal.accountNumber }}</p>
+                </div>
+                <span class="goal-pill">{{ getProgressPercent(goal) }}% funded</span>
+            </header>
 
-    <p>{{goal.targetAmount}}</p>
-    <p>{{goal.currentAmount}}</p>
+            <div class="money-grid">
+                <div>
+                    <small>Current Amount</small>
+                    <strong>₱{{ goal.currentAmount | number: '1.2-2' }}</strong>
+                </div>
+                <div>
+                    <small>Target Amount</small>
+                    <strong>₱{{ goal.targetAmount | number: '1.2-2' }}</strong>
+                </div>
+                <div>
+                    <small>Remaining</small>
+                    <strong>₱{{ getRemainingAmount(goal) | number: '1.2-2' }}</strong>
+                </div>
+            </div>
 
-    <form (ngSubmit)="contribute()">
-        <input type="number" name="contributeAmount" [(ngModel)]="contributeAmount" placeholder="Contribute Amount" required>
-        <button type="submit">Contribute</button>
-    </form>
+            <div class="progress-wrap" aria-label="Savings progress">
+                <div class="progress-track">
+                    <span [style.width.%]="getProgressPercent(goal)"></span>
+                </div>
+            </div>
+
+            <form class="contribute-form" (ngSubmit)="contribute()">
+                <label for="contributeAmount">Contribution Amount</label>
+                <div class="contribute-row">
+                    <input
+                        id="contributeAmount"
+                        type="number"
+                        min="1"
+                        step="0.01"
+                        name="contributeAmount"
+                        [(ngModel)]="contributeAmount"
+                        placeholder="Enter amount"
+                        required
+                    >
+                    <button type="submit">Contribute</button>
+                </div>
+            </form>
+        </article>
+    </section>
 </ng-container>
 
 <ng-template #loading>
-    <p>Loading saving goal...</p>
+    <section class="goal-page">
+        <article class="goal-card loading-card">
+            <p>Loading saving goal...</p>
+        </article>
+    </section>
 </ng-template>
