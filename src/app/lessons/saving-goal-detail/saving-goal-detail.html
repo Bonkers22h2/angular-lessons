@@ -1,12 +1,19 @@
 <p>saving-goal-detail works!</p>
-<h1>{{savingGoal.goalName}}</h1>
-<h2>{{savingGoal.id}}</h2>
-<h2>{{savingGoal.accountNumber}}</h2>
 
-<p>{{savingGoal.targetAmount}}</p>
-<p>{{savingGoal.currentAmount}}</p>
+<ng-container *ngIf="savingGoal as goal; else loading">
+    <h1>{{goal.goalName}}</h1>
+    <h2>{{goal.id}}</h2>
+    <h2>{{goal.accountNumber}}</h2>
 
-<form (ngSubmit)="contribute()">
-    <input type="number" name="contributeAmount" [(ngModel)]="contributeAmount" placeholder="Contribute Amount" required>
-    <button type="submit">Contribute</button>
-</form>
+    <p>{{goal.targetAmount}}</p>
+    <p>{{goal.currentAmount}}</p>
+
+    <form (ngSubmit)="contribute()">
+        <input type="number" name="contributeAmount" [(ngModel)]="contributeAmount" placeholder="Contribute Amount" required>
+        <button type="submit">Contribute</button>
+    </form>
+</ng-container>
+
+<ng-template #loading>
+    <p>Loading saving goal...</p>
+</ng-template>
