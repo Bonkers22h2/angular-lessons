@@ -23,6 +23,8 @@ export class AccountDetail implements OnInit {
   accountNumber: string = '';
   transferAmount: number = 0;
   toAccountNumber: string = '';
+  goalName: string = '';
+  targetAmount: number = 0;
 
 
   constructor(private route: ActivatedRoute, private savingsGoalService: SavingsGoalService, private accountService: AccountService, private beneficiaryService: BeneficiaryService, private cdr: ChangeDetectorRef) {
@@ -52,6 +54,19 @@ export class AccountDetail implements OnInit {
     });
   }
 
+  createSavingGoal() {
+    const newSavingGoal = {
+      goalName: this.goalName,
+      targetAmount: this.targetAmount
+    };
+
+    this.savingsGoalService.createSavingsGoal(this.accountNumber, newSavingGoal).subscribe(() => {
+      this.goalName = '';
+      this.targetAmount = 0;
+      this.loadSavingsGoal();
+    })
+  }
+
   loadAccount() {
     const accountNumber = this.route.snapshot.paramMap.get('accountNumber') ?? '';
     this.accountService.getAccount(accountNumber).subscribe(data => {
@@ -67,7 +82,7 @@ export class AccountDetail implements OnInit {
     })
   }
 
-  loadSavingsGoal(){
+  loadSavingsGoal() {
     this.savingsGoalService.getSavingsGoal(this.accountNumber).subscribe(data => {
       this.savingsGoal = data;
       this.cdr.detectChanges();
