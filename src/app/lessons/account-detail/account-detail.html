@@ -58,7 +58,7 @@
             </div>
 
             <div class="goal-list" *ngIf="savingsGoal.length > 0; else emptySavingsGoal">
-                <article class="goal-card" *ngFor="let savingGoal of savingsGoal">
+                <a class="goal-card" *ngFor="let savingGoal of savingsGoal" [routerLink]="['/accounts', accountNumber, 'savingsGoal', savingGoal.id]">
                     <div class="goal-header">
                         <div>
                             <small>Goal</small>
@@ -73,7 +73,7 @@
                         <span>Saved ₱{{ (savingGoal.currentAmount || 0) | number: '1.2-2' }}</span>
                         <span>Target ₱{{ savingGoal.targetAmount | number: '1.2-2' }}</span>
                     </div>
-                </article>
+                </a>
             </div>
 
             <ng-template #emptySavingsGoal>
@@ -81,8 +81,10 @@
             </ng-template>
 
             <form class="goal-form" (ngSubmit)="createSavingGoal()">
-                <label>Goal name <input type="text" [(ngModel)]="goalName" name="goalName" placeholder="e.g. New laptop" required></label>
-                <label>Target amount <input type="number" [(ngModel)]="targetAmount" name="targetAmount" placeholder="5000" min="0" required></label>
+                <label>Goal name <input type="text" [(ngModel)]="goalName" name="goalName" placeholder="e.g. New laptop"
+                        required></label>
+                <label>Target amount <input type="number" [(ngModel)]="targetAmount" name="targetAmount"
+                        placeholder="5000" min="0" required></label>
                 <button type="submit">Add savings goal</button>
             </form>
         </section>

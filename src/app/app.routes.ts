@@ -3,9 +3,11 @@ import { Counter } from './lessons/counter/counter';
 import { AccountPreview } from './lessons/account-preview/account-preview';
 import { AccountDetail } from './lessons/account-detail/account-detail';
 import { BeneficiaryDetail } from './lessons/beneficiary-detail/beneficiary-detail';
+import { SavingGoalDetail } from './lessons/saving-goal-detail/saving-goal-detail';
 
 export const routes: Routes = [
     { path: 'accounts', component: AccountPreview },
+    { path: 'accounts/:accountNumber/savingsGoal/:id', component: SavingGoalDetail   },
     { path: 'accounts/:accountNumber/beneficiaries/:id', component: BeneficiaryDetail },
     { path: 'accounts/:accountNumber', component: AccountDetail },
     { path: 'counter', component: Counter },
