@@ -58,7 +58,8 @@
             </div>
 
             <div class="goal-list" *ngIf="savingsGoal.length > 0; else emptySavingsGoal">
-                <a class="goal-card" *ngFor="let savingGoal of savingsGoal" [routerLink]="['/accounts', accountNumber, 'savingsGoal', savingGoal.id]">
+                <a class="goal-card" *ngFor="let savingGoal of savingsGoal"
+                    [routerLink]="['/accounts', accountNumber, 'savingsGoal', savingGoal.id]">
                     <div class="goal-header">
                         <div>
                             <small>Goal</small>

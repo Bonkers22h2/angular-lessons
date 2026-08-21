@@ -21,4 +21,8 @@ export class SavingsGoalService {
     createSavingsGoal(accountNumber: string, savingGoal: any): Observable<any> {
         return this.http.post<any>(`${this.baseUrl}/${accountNumber}/savingsGoal`, savingGoal);
     }
+
+    contribute(accountNumber: string, id: number, amount: number): Observable<any> {
+        return this.http.post<any>(`${this.baseUrl}/${accountNumber}/savingsGoal/${id}`, { amount });
+    }
 }

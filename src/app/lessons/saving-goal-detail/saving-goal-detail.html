@@ -5,3 +5,8 @@
 
 <p>{{savingGoal.targetAmount}}</p>
 <p>{{savingGoal.currentAmount}}</p>
+
+<form (ngSubmit)="contribute()">
+    <input type="number" name="contributeAmount" [(ngModel)]="contributeAmount" placeholder="Contribute Amount" required>
+    <button type="submit">Contribute</button>
+</form>
